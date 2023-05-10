@@ -12,11 +12,24 @@ let empDetails = [
 // arrays, functions and anonymous functions  
 
 // Correct the function name as per test case requirement
-function arrangeEmpDetails1(data)
+function arrangeEmpDetails(data)
 {
         // write your code here
+   return data.sort(compare)
 }
+function compare(a, b) {
+  // Use toUpperCase() to ignore character casing
+  const nameA = a.name.toUpperCase();
+  const nameB = b.name.toUpperCase();
 
+  let comparison = 0;
+  if (nameA > nameB) {
+    comparison = 1;
+  } else if (nameA < nameB) {
+    comparison = -1;
+  }
+  return comparison;
+}
 // let sortedemp = arrangeEmpDetails(empDetails)
 // console.log(sortedemp);
 
@@ -28,9 +41,10 @@ function arrangeEmpDetails1(data)
 
 const displayEmp = empDetails.map((emp)=>{
     // write your code here
+   return `${emp.id} ---- ${emp.name} ---- ${emp.salary}`
 })
 
-// console.log(displayEmp);
+//console.log(displayEmp);
 
 //3. Display the total Income of all the employees whose names starting with 'A' 
 // by using array functions and modern javascript code
@@ -52,11 +66,22 @@ const totalsal = empDetails
 let maxappraisalscore = empDetails.reduce((max,emp)=> emp.appraisal > max? emp.appraisal:max,0);
 
 // Correct the function name as per test case requirement
-function getAppraisalPct1(maxappraisalscore) 
+async function getAppraisalPct (maxappraisalscore)
 {
     // write your code here
+    if (maxappraisalscore >= 100){
+        return "20% hike to be given"
+    }
+    else if(maxappraisalscore > 90 && maxappraisalscore < 100){
+        return '10% hike to be given'
+    }
+    else if( maxappraisalscore > 85 && maxappraisalscore <= 90 ){
+        return '5% hike to be given'
+    }
+    else return 'Unfortunately, you are not eligible for a hike'
 }
-
+// const a = getAppraisalPct(92)
+// console.log(a)
 
 module.exports = {
     arrangeEmpDetails,
